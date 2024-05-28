@@ -16,6 +16,9 @@ namespace ESC.AdminitrationCore.Infraestructure
         public  DbSet<Citizen> Citizens { get; set; }
         public  DbSet<DocumentType> DocumentTypes { get; set; }
         public  DbSet<CitizenMaritalStatus> CitizenMaritalStatus { get; set; }
+
+        public DbSet<Country> Country { get; set; }
+
         #endregion
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

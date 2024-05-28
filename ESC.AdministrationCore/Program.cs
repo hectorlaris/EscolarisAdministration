@@ -4,6 +4,7 @@ using ESC.AdminitrationCore;
 using ESC.AdminitrationCore.Infraestructure;
 
 
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<AdministrationCoreDbContext>(options =>
