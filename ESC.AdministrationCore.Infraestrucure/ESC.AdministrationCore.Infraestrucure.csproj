@@ -1,13 +1,14 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
-    <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\v1\" />
+    <Folder Include="Migrations\" />
+    <Folder Include="Repositories\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -25,9 +26,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ESC.AdmiistrationCore.Entities\ESC.AdmistrationCore.Entities.csproj" />
-    <ProjectReference Include="..\ESC.AdministrationCore.Infraestrucure\ESC.AdministrationCore.Infraestrucure.csproj" />
   </ItemGroup>
 
-
-	
 </Project>
