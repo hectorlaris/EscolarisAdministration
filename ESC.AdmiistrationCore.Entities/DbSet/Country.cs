@@ -19,12 +19,10 @@ namespace ESC.AdministrationCore.Entities.DbSet
         [DataMember(Name = "Code")]
         public string? Code { get; set; }
 
-
         [Required]
         [StringLength(20)]
         [DataMember(Name = "Name")]
         public string? Name { get; set; }
-
 
 
         //relationships

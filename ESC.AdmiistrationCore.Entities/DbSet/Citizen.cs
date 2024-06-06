@@ -53,7 +53,7 @@ namespace ESC.AdministrationCore.Entities.DbSet
 
         //relationships
         public required DocumentType DocumentType { get; set; }
-        public required CitizenMaritalStatus CitizenMaritalStatus { get; set; }
+     //   public required CitizenMaritalStatus CitizenMaritalStatus { get; set; }
 
     }
 }

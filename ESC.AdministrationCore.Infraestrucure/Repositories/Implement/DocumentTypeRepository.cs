@@ -1,20 +1,16 @@
 ﻿using Microsoft.EntityFrameworkCore.ChangeTracking; // To use EntityEntry<T>.
 using Microsoft.EntityFrameworkCore;                // To use ToArrayAsync.
 using System.Threading.Tasks;
-
-
-using ESC.AdministrationCore.Infraestructure;
 using ESC.AdministrationCore.Entities.DbSet;
+using ESC.AdministrationCore.Infraestructure.Repositories.Contracts;
 
+namespace ESC.AdministrationCore.Infraestructure.Repositories.Implement;
 
-
-namespace ESC.AdministrationCore.Infraestructure.Repositories;
-
-public class PackageRepository : IPackageRepository
+public class DocumentTypeRepository : IDocumentTypeRepository
 {
 	private AdministrationCoreDbContext _db;
 
-	public PackageRepository(AdministrationCoreDbContext db)
+	public DocumentTypeRepository(AdministrationCoreDbContext db)
 	{
 		_db = db;
 	}
@@ -23,6 +19,5 @@ public class PackageRepository : IPackageRepository
 	{
 		return _db.DocumentTypes.ToArrayAsync();
 	}
-
 
 }
