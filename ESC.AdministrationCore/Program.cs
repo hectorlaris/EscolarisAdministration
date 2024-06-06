@@ -1,25 +1,12 @@
 using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Identity;
-using ESC.AdministrationCore;
 using ESC.AdministrationCore.Infraestructure;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.OpenApi.Models;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-
-using Microsoft.AspNetCore.Builder;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-
-
-using Microsoft.AspNetCore.Mvc.Formatters; // To use IOutputFormatter.
-using ESC.AdministrationCore.Entities.DbSet;
-
 using ESC.AdministrationCore.Infraestructure.Repositories; // To use IPackageRepository.
-using Swashbuckle.AspNetCore.SwaggerUI; // To use SubmitMethod.
-using Microsoft.AspNetCore.HttpLogging; // To use HttpLoggingFields.
+using ESC.AdministrationCore.Extensions;
 
-
+// Constructor de la aplicación web
+// para preparar y configurarla 
 var builder = WebApplication.CreateBuilder(args);
+
 
 // Configuración de la base de datos
 builder.Services.AddDbContext<AdministrationCoreDbContext>(options =>
@@ -30,19 +17,29 @@ builder.Services.AddDbContext<AdministrationCoreDbContext>(options =>
 // registro  en el contenedor de inyección de dependencias
 builder.Services.AddScoped<IPackageRepository, PackageRepository>();
 
+// Configurar CORS y Swagger utilizando los métodos de extensión
+builder.Services.ConfigureCors();
+builder.Services.ConfigureSwagger();
 
-// Agregar servicios de controladores
+// Agregar servicios de controladores MVC
 builder.Services.AddControllers();
 
-// Configuración de Swagger
-builder.Services.AddSwaggerGen(c =>
+// monitorear la salud de tu aplicación
+builder.Services.AddHealthChecks();
+
+// manejo de logs para facilitar la depuración y monitoreo de la aplicación
+builder.Services.AddLogging(loggingBuilder =>
 {
-    c.SwaggerDoc("v1", new OpenApiInfo { Title = "EscolarisAdmon", Version = "v1" });
+    loggingBuilder.AddConsole();
+    loggingBuilder.AddDebug();
 });
 
 
-// Construcción de la aplicación
+// Para construir y ejecutar la aplicación con las configuraciones definidas.
 var app = builder.Build();
+
+//habilitar los health checks 
+app.MapHealthChecks("/health");
 
 // Configuración del pipeline de solicitudes HTTP
 if (builder.Environment.IsDevelopment())
@@ -61,7 +58,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
 
-// Usar CORS
+// Usar CORS Cross-Origin Resource Sharing
 app.UseCors("CorsPolicy");
 
 // Usar autenticación y autorización
