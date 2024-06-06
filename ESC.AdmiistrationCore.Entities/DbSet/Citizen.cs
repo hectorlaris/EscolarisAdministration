@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Runtime.Serialization;
 using Microsoft.EntityFrameworkCore;
 
-namespace ESC.AdminitrationCore.Entities.DbSet
+namespace ESC.AdministrationCore.Entities.DbSet
 {
 
     [Index("DocumentNumber", Name = "DocumentNumber")]

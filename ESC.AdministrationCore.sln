@@ -5,9 +5,9 @@ VisualStudioVersion = 17.8.34316.72
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ESC.AdministrationCore", "ESC.AdministrationCore\ESC.AdministrationCore.csproj", "{848C4EA3-2AA6-4B87-91B9-01CA9AF5C33F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ESC.AdmistrationCore.Entities", "ESC.AdmiistrationCore.Entities\ESC.AdmistrationCore.Entities.csproj", "{A901A453-4AA6-46D3-B797-4A5C7DB46C64}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ESC.AdministrationCore.Entities", "ESC.AdmiistrationCore.Entities\ESC.AdministrationCore.Entities.csproj", "{A901A453-4AA6-46D3-B797-4A5C7DB46C64}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ESC.AdministrationCore.Infraestrucure", "ESC.AdministrationCore.Infraestrucure\ESC.AdministrationCore.Infraestrucure.csproj", "{AB83F8BF-176E-4AB8-9426-F040FCE84985}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ESC.AdministrationCore.Infraestructure", "ESC.AdministrationCore.Infraestrucure\ESC.AdministrationCore.Infraestructure.csproj", "{AB83F8BF-176E-4AB8-9426-F040FCE84985}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
