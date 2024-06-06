@@ -3,10 +3,10 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace ESC.AdministrationCore.Infraestrucure.Migrations
+namespace ESC.AdministrationCore.Infraestructure.Migrations
 {
     /// <inheritdoc />
-    public partial class init : Migration
+    public partial class Initial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -15,7 +15,7 @@ namespace ESC.AdministrationCore.Infraestrucure.Migrations
                 name: "dbo");
 
             migrationBuilder.CreateTable(
-                name: "CitizenMaritalStatus",
+                name: "CitizenMaritalStatuses",
                 schema: "dbo",
                 columns: table => new
                 {
@@ -24,7 +24,21 @@ namespace ESC.AdministrationCore.Infraestrucure.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CitizenMaritalStatus", x => x.Id);
+                    table.PrimaryKey("PK_CitizenMaritalStatuses", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Countries",
+                schema: "dbo",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Code = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Countries", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -35,8 +49,7 @@ namespace ESC.AdministrationCore.Infraestrucure.Migrations
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Code = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    IdDocumentType = table.Column<short>(type: "smallint", nullable: true),
-                    DocumentTypeSimmit = table.Column<short>(type: "smallint", nullable: true)
+                    IdDocumentType = table.Column<short>(type: "smallint", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -51,7 +64,7 @@ namespace ESC.AdministrationCore.Infraestrucure.Migrations
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     DocumentNumber = table.Column<string>(type: "nvarchar(12)", maxLength: 12, nullable: false),
                     MyDocumentType = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    FirstName = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: false),
+                    FirstName = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
                     LastName = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
                     Picture = table.Column<byte[]>(type: "image", nullable: true),
                     IdDocumentType = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
@@ -67,10 +80,10 @@ namespace ESC.AdministrationCore.Infraestrucure.Migrations
                 {
                     table.PrimaryKey("PK_Citizens", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Citizens_CitizenMaritalStatus_IdMaritalStatus",
+                        name: "FK_Citizens_CitizenMaritalStatuses_IdMaritalStatus",
                         column: x => x.IdMaritalStatus,
                         principalSchema: "dbo",
-                        principalTable: "CitizenMaritalStatus",
+                        principalTable: "CitizenMaritalStatuses",
                         principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Citizens_DocumentTypes_IdDocumentType",
@@ -120,7 +133,11 @@ namespace ESC.AdministrationCore.Infraestrucure.Migrations
                 schema: "dbo");
 
             migrationBuilder.DropTable(
-                name: "CitizenMaritalStatus",
+                name: "Countries",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "CitizenMaritalStatuses",
                 schema: "dbo");
 
             migrationBuilder.DropTable(

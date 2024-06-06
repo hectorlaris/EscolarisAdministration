@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Runtime.Serialization;
 
-namespace ESC.AdminitrationCore.Entities.DbSet
+namespace ESC.AdministrationCore.Entities.DbSet
 {
     public class CitizenMaritalStatus
     {

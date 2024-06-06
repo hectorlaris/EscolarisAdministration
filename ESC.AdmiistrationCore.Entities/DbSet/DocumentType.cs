@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Runtime.Serialization;
 
-namespace ESC.AdminitrationCore.Entities.DbSet
+namespace ESC.AdministrationCore.Entities.DbSet
 {
     public class DocumentType
     {
@@ -20,10 +20,6 @@ namespace ESC.AdminitrationCore.Entities.DbSet
 
         [DataMember(Name = "IdDocumentType")]
         public short? IdDocumentType { get; set; }
-
-        [DataMember(Name = "DocumentTypeSimmit")]
-        public short? DocumentTypeSimmit { get; set; }
-
 
         //relationships
   

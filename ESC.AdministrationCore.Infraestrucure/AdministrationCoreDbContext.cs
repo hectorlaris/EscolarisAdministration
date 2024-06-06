@@ -1,8 +1,8 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
-using ESC.AdminitrationCore.Entities.DbSet;
+using ESC.AdministrationCore.Entities.DbSet;
 
-namespace ESC.AdminitrationCore.Infraestructure
+namespace ESC.AdministrationCore.Infraestructure
 {
     public class AdministrationCoreDbContext : DbContext
     {
@@ -15,9 +15,9 @@ namespace ESC.AdminitrationCore.Infraestructure
         #region DbSet Instance
         public  DbSet<Citizen> Citizens { get; set; }
         public  DbSet<DocumentType> DocumentTypes { get; set; }
-        public  DbSet<CitizenMaritalStatus> CitizenMaritalStatus { get; set; }
+        public  DbSet<CitizenMaritalStatus> CitizenMaritalStatuses { get; set; }
 
-        public DbSet<Country> Country { get; set; }
+        public DbSet<Country> Countries { get; set; }
 
         #endregion
 
