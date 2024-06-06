@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Runtime.Serialization;
 
 namespace ESC.AdministrationCore.Entities.DbSet
@@ -14,7 +15,9 @@ namespace ESC.AdministrationCore.Entities.DbSet
         [DataMember(Name = "Name")]
         public required string Name { get; set; }
 
+
         //relationships
-        public required ICollection<Citizen> Citizens { get; set; }
+        //[InverseProperty("MaritalStatus")]
+        //public ICollection<Citizen> MaritalSatusCitizens { get; set; } = new List<Citizen>();
     }
 }

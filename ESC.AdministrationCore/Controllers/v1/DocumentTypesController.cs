@@ -1,7 +1,5 @@
-﻿using ESC.AdministrationCore.Infraestructure;
-using ESC.AdministrationCore.Entities;
-using Microsoft.AspNetCore.Mvc;
-using ESC.AdministrationCore.Infraestructure.Repositories;
+﻿using Microsoft.AspNetCore.Mvc;
+using ESC.AdministrationCore.Infraestructure.Repositories.Contracts;
 using ESC.AdministrationCore.Entities.DbSet;
 
 
@@ -11,10 +9,10 @@ namespace ESC.AdministrationCore.Controllers.v1
     [ApiController]
     public class DocumentTypesController : ControllerBase
     {
-        private readonly IPackageRepository _repo;
+        private readonly IDocumentTypeRepository _repo;
 
         // Constructor injects repository registered in Program.cs.
-        public DocumentTypesController(IPackageRepository repo)
+        public DocumentTypesController(IDocumentTypeRepository repo)
         {
             _repo = repo;
         }

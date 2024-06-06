@@ -1,9 +1,10 @@
 ﻿using System.Threading.Tasks;
 using ESC.AdministrationCore.Entities.DbSet;
 
-namespace ESC.AdministrationCore.Infraestructure.Repositories
+
+namespace ESC.AdministrationCore.Infraestructure.Repositories.Contracts
 {
-	public interface IPackageRepository
+	public interface IDocumentTypeRepository
 	{
 		Task<DocumentType[]> RetrieveAllAsync();
 	}

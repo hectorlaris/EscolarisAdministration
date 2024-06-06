@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using ESC.AdministrationCore.Infraestructure;
-using ESC.AdministrationCore.Infraestructure.Repositories; // To use IPackageRepository.
+using ESC.AdministrationCore.Infraestructure.Repositories.Implement; // To use IPackageRepository.
+using ESC.AdministrationCore.Infraestructure.Repositories.Contracts; // To use IPackageRepository.
 using ESC.AdministrationCore.Extensions;
 
 // Constructor de la aplicación web
@@ -15,7 +16,7 @@ builder.Services.AddDbContext<AdministrationCoreDbContext>(options =>
 });
 
 // registro  en el contenedor de inyección de dependencias
-builder.Services.AddScoped<IPackageRepository, PackageRepository>();
+builder.Services.AddScoped<IDocumentTypeRepository, DocumentTypeRepository>();
 
 // Configurar CORS y Swagger utilizando los métodos de extensión
 builder.Services.ConfigureCors();
