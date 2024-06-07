@@ -5,8 +5,8 @@ using ESC.AdministrationCore.Entities.DbSet;
 
 namespace ESC.AdministrationCore.Controllers.v1
 {
-    [Route("administration/v1/documenttypes")]
     [ApiController]
+    [Route("administration/v1/documenttypes")]
     public class DocumentTypesController : ControllerBase
     {
         private readonly IDocumentTypeRepository _repo;
@@ -21,12 +21,12 @@ namespace ESC.AdministrationCore.Controllers.v1
         [ProducesResponseType(typeof(IEnumerable<DocumentType>), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(500)]
-
-
         public async Task<IEnumerable<DocumentType>> GetDocumentTypes()
         {
             return (await _repo.RetrieveAllAsync());
                  
         }
+
+
     }
 }
