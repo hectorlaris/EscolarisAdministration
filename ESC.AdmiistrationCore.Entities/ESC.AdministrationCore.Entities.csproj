@@ -7,11 +7,6 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <Compile Include="D:\EscolarisNet\csi-esc-administration-core\ESC.AdministrationCore.Application\DTOs\CountryDTO.cs" Link="CountryDTO.cs" />
-	  <Compile Include="D:\EscolarisNet\csi-esc-administration-core\ESC.AdministrationCore.Application\DTOs\DocumentTypeDTO.cs" Link="DocumentTypeDTO.cs" />
-	</ItemGroup>
-
-	<ItemGroup>
 	  <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.0-preview.4.24267.1" />
 	</ItemGroup>	
 	

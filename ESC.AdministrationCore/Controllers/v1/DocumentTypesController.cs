@@ -10,14 +10,15 @@ using ESC.AdministrationCore.Application.DTOs;
 
 namespace ESC.AdministrationCore.Controllers.v1
 {
-    [ApiController]
+
     [Route("administration/v1/documenttypes")]
-   
+    [ApiController]
     public class DocumentTypesController : ControllerBase
     {
         private readonly AdministrationCoreDbContext _context;
         private readonly IMapper _mapper;
 
+        //inyección de dependencias 
         public DocumentTypesController(AdministrationCoreDbContext Context,
                                        IMapper mapper )
         {
@@ -26,23 +27,25 @@ namespace ESC.AdministrationCore.Controllers.v1
         }
 
 
-        //private readonly IDocumentTypeRepository _repo;
+        [HttpGet]
+        public async Task<ActionResult<List<DocumentTypeDTO>>> Get()
+        {
+            var documentTypes = await _context.DocumentTypes.ToListAsync();
 
-        //// Constructor injects repository registered in Program.cs.
-        //public DocumentTypesController(IDocumentTypeRepository repo)
-        //{
-        //    _repo = repo;
-        //}
+            return _mapper.Map<List<DocumentTypeDTO>>(documentTypes);
+        }
 
-        //[HttpGet()]
-        //[ProducesResponseType(typeof(IEnumerable<DocumentType>), 200)]
-        //[ProducesResponseType(400)]
-        //[ProducesResponseType(500)]
-        //public async Task<IEnumerable<DocumentType>> GetDocumentTypes()
-        //{
-        //    return (await _repo.RetrieveAllAsync());
+        [HttpGet]
+        [Route("{code}")]
+        public async Task<ActionResult<DocumentTypeDTO>> GetDocumentTypeByCode(string code)
+        {
+            var documentType = await _context.DocumentTypes.FirstOrDefaultAsync(x => x.Code == code);
 
-        //}
+            if (documentType == null)
+                return NotFound("Registro no encontrado.");
+
+            return _mapper.Map<DocumentTypeDTO>(documentType);
+        }
 
         [HttpPost]
         public async Task<ActionResult> Post([FromBody] DocumentTypeCreateDTO documentTypeCreateDTO)

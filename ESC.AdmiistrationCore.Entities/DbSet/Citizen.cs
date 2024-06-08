@@ -25,7 +25,7 @@ namespace ESC.AdministrationCore.Entities.DbSet
         public string? FirstName { get; set; }
 
         [Required]
-        [StringLength(20)]
+        [StringLength(20, ErrorMessage = "El campo {0} no debe exceder de {1} caracteres.")]
         public string? LastName { get; set; }
 
         [Column(TypeName = "image")]

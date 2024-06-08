@@ -10,6 +10,7 @@ namespace ESC.AdministrationCore.Application.Mapping
         {
             // Definir mapeos 
             CreateMap<DocumentTypeCreateDTO, DocumentType>();
+            CreateMap<DocumentType, DocumentTypeDTO>();
 
         }
     }
