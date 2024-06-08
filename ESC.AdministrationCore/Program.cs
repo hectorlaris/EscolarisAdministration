@@ -1,8 +1,14 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Hosting;
+using AutoMapper;
+using Microsoft.Extensions.DependencyInjection;
+
 using ESC.AdministrationCore.Infraestructure;
 using ESC.AdministrationCore.Infraestructure.Repositories.Implement; // To use IPackageRepository.
 using ESC.AdministrationCore.Infraestructure.Repositories.Contracts; // To use IPackageRepository.
 using ESC.AdministrationCore.Extensions;
+using ESC.AdministrationCore.Application.Mapping;
+
 
 // Constructor de la aplicación web
 // para preparar y configurarla 
@@ -22,6 +28,9 @@ builder.Services.AddScoped<IDocumentTypeRepository, DocumentTypeRepository>();
 builder.Services.ConfigureCors();
 builder.Services.ConfigureSwagger();
 
+//AutoMapper
+builder.Services.AddAutoMapper(typeof(AutoMapperProfile));
+
 // Agregar servicios de controladores MVC
 builder.Services.AddControllers();
 
@@ -34,6 +43,7 @@ builder.Services.AddLogging(loggingBuilder =>
     loggingBuilder.AddConsole();
     loggingBuilder.AddDebug();
 });
+
 
 
 // Para construir y ejecutar la aplicación con las configuraciones definidas.

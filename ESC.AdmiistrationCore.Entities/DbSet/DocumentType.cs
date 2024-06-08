@@ -10,6 +10,7 @@ namespace ESC.AdministrationCore.Entities.DbSet
     {
         [Key]
         [DataMember(Name = "Id")]
+
         public Guid Id { get; set; }
 
         [DataMember(Name = "Code")]
