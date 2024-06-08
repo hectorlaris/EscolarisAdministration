@@ -28,6 +28,11 @@ namespace ESC.AdministrationCore.Infraestructure
             //base.OnModelCreating(modelBuilder);
 
             //GUIDs secuenciales por razones de rendimiento
+            modelBuilder.Entity<Citizen>()
+                .Property(d => d.Id)
+                .HasDefaultValueSql("NEWSEQUENTIALID()");
+
+
             modelBuilder.Entity<DocumentType>()
                 .Property(d => d.Id)
                 .HasDefaultValueSql("NEWSEQUENTIALID()");

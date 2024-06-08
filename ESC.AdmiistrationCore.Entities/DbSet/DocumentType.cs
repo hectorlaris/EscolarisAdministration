@@ -16,7 +16,8 @@ namespace ESC.AdministrationCore.Entities.DbSet
         [DataMember(Name = "Code")]
         public required string Code { get; set; }
 
-        [DataMember(Name = "Description")]
+        [Required]
+        [StringLength(30, ErrorMessage = "El campo {0} no debe exceder de {1} caracteres.")]
         public required string Description { get; set; }
 
         [DataMember(Name = "IdDocumentType")]
