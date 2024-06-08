@@ -19,13 +19,11 @@ namespace ESC.AdministrationCore.Controllers.v1
         private readonly IMapper _mapper;
 
         //inyección de dependencias 
-        public DocumentTypesController(AdministrationCoreDbContext Context,
-                                       IMapper mapper )
+        public DocumentTypesController(AdministrationCoreDbContext Context, IMapper mapper )
         {
             _context = Context;
             _mapper = mapper;
         }
-
 
         [HttpGet]
         public async Task<ActionResult<List<DocumentTypeDTO>>> Get()
