@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace ESC.AdministrationCore.Application.DTOs
 {
-    internal class DocumentTypeDTO
+    public class DocumentTypeDTO
     {
+        public required string Code { get; set; }
+        public required string Description { get; set; }
+        public short? IdDocumentType { get; set; }
     }
 }
