@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ESC.AdministrationCore.Infraestructure.Migrations
 {
     [DbContext(typeof(AdministrationCoreDbContext))]
-    [Migration("20240606164955_Initial")]
-    partial class Initial
+    [Migration("20240607213904_AddDefaultGuidForDocumentType")]
+    partial class AddDefaultGuidForDocumentType
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -81,8 +81,6 @@ namespace ESC.AdministrationCore.Infraestructure.Migrations
 
                     b.HasIndex("IdDocumentType");
 
-                    b.HasIndex("IdMaritalStatus");
-
                     b.HasIndex(new[] { "DocumentNumber" }, "DocumentNumber");
 
                     b.HasIndex(new[] { "LastName" }, "LastName");
@@ -130,7 +128,8 @@ namespace ESC.AdministrationCore.Infraestructure.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("uniqueidentifier")
+                        .HasDefaultValueSql("NEWSEQUENTIALID()");
 
                     b.Property<string>("Code")
                         .IsRequired()
@@ -157,18 +156,7 @@ namespace ESC.AdministrationCore.Infraestructure.Migrations
                         .HasForeignKey("IdDocumentType")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("ESC.AdministrationCore.Entities.DbSet.CitizenMaritalStatus", "CitizenMaritalStatus")
-                        .WithMany("Citizens")
-                        .HasForeignKey("IdMaritalStatus");
-
-                    b.Navigation("CitizenMaritalStatus");
-
                     b.Navigation("DocumentType");
-                });
-
-            modelBuilder.Entity("ESC.AdministrationCore.Entities.DbSet.CitizenMaritalStatus", b =>
-                {
-                    b.Navigation("Citizens");
                 });
 
             modelBuilder.Entity("ESC.AdministrationCore.Entities.DbSet.DocumentType", b =>

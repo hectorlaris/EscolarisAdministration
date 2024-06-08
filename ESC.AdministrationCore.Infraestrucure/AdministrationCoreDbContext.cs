@@ -25,6 +25,14 @@ namespace ESC.AdministrationCore.Infraestructure
         {
             modelBuilder.HasDefaultSchema("dbo");
 
+            //base.OnModelCreating(modelBuilder);
+
+            //GUIDs secuenciales por razones de rendimiento
+            modelBuilder.Entity<DocumentType>()
+                .Property(d => d.Id)
+                .HasDefaultValueSql("NEWSEQUENTIALID()");
+
+            // Otras configuraciones
             modelBuilder.Entity<DocumentType>()
                .HasIndex(m => m.Description);
 

@@ -80,12 +80,6 @@ namespace ESC.AdministrationCore.Infraestructure.Migrations
                 {
                     table.PrimaryKey("PK_Citizens", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Citizens_CitizenMaritalStatuses_IdMaritalStatus",
-                        column: x => x.IdMaritalStatus,
-                        principalSchema: "dbo",
-                        principalTable: "CitizenMaritalStatuses",
-                        principalColumn: "Id");
-                    table.ForeignKey(
                         name: "FK_Citizens_DocumentTypes_IdDocumentType",
                         column: x => x.IdDocumentType,
                         principalSchema: "dbo",
@@ -107,12 +101,6 @@ namespace ESC.AdministrationCore.Infraestructure.Migrations
                 column: "IdDocumentType");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Citizens_IdMaritalStatus",
-                schema: "dbo",
-                table: "Citizens",
-                column: "IdMaritalStatus");
-
-            migrationBuilder.CreateIndex(
                 name: "LastName",
                 schema: "dbo",
                 table: "Citizens",
@@ -129,15 +117,15 @@ namespace ESC.AdministrationCore.Infraestructure.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "CitizenMaritalStatuses",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
                 name: "Citizens",
                 schema: "dbo");
 
             migrationBuilder.DropTable(
                 name: "Countries",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "CitizenMaritalStatuses",
                 schema: "dbo");
 
             migrationBuilder.DropTable(

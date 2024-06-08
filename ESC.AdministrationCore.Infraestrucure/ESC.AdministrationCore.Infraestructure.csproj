@@ -25,6 +25,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ESC.AdmiistrationCore.Entities\ESC.AdministrationCore.Entities.csproj" />
+    <ProjectReference Include="..\ESC.AdministrationCore.Application\ESC.AdministrationCore.Application.csproj" />
+    <ProjectReference Include="..\ESC.AdministrationCore.Business\ESC.AdministrationCore.Business.csproj" />
   </ItemGroup>
 
 </Project>
