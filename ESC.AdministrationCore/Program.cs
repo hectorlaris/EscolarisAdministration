@@ -1,6 +1,5 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Hosting;
-using AutoMapper;
 using Microsoft.Extensions.DependencyInjection;
 
 using ESC.AdministrationCore.Infraestructure;
