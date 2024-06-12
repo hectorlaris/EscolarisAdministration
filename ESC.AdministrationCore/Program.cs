@@ -1,6 +1,4 @@
 using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.DependencyInjection;
 
 using ESC.AdministrationCore.Infraestructure;
 using ESC.AdministrationCore.Infraestructure.Repositories.Implement; // To use IPackageRepository.
@@ -8,16 +6,24 @@ using ESC.AdministrationCore.Infraestructure.Repositories.Contracts; // To use I
 using ESC.AdministrationCore.Extensions;
 using ESC.AdministrationCore.Application.Mapping;
 
+using Microsoft.Data.SqlClient;
 
 // Constructor de la aplicación web
 // para preparar y configurarla 
 var builder = WebApplication.CreateBuilder(args);
 
-
-// Configuración de la base de datos
+// Configuración conexion a la base de datos usando secrets
 builder.Services.AddDbContext<AdministrationCoreDbContext>(options =>
-{
+{ 
+    var conStrBuilder = new SqlConnectionStringBuilder(
+                          builder.Configuration.GetConnectionString("Escolaris"));
+
+    conStrBuilder.Password = builder.Configuration["SQL_PASSWORD"];
+
     options.UseSqlServer(builder.Configuration.GetConnectionString("EscolarisAdmon"));
+
+    //var connection = conStrBuilder.ConnectionString;
+
 });
 
 // registro  en el contenedor de inyección de dependencias
@@ -42,7 +48,6 @@ builder.Services.AddLogging(loggingBuilder =>
     loggingBuilder.AddConsole();
     loggingBuilder.AddDebug();
 });
-
 
 
 // Para construir y ejecutar la aplicación con las configuraciones definidas.
