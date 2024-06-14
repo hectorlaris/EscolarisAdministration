@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Diagnostics;
 using System.Runtime.Serialization;
+using System.Xml.Linq;
 
 namespace ESC.AdministrationCore.Entities.DbSet
 {
@@ -27,5 +29,16 @@ namespace ESC.AdministrationCore.Entities.DbSet
   
         [InverseProperty("DocumentType")]
         public ICollection<Citizen> Citizens { get; set; } = new List<Citizen>();
+
+        // Parameterless constructor for EF Core
+        private DocumentType() { }
+
+        public DocumentType(string code, string description, short iddocumenttype)
+        {
+            // Id = Guid.NewGuid();
+            Code = code;
+            Description = description;
+            IdDocumentType = iddocumenttype;
+        }
     }
 }

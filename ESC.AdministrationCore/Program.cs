@@ -26,8 +26,14 @@ builder.Services.AddDbContext<AdministrationCoreDbContext>(options =>
 
 });
 
-// registro  en el contenedor de inyección de dependencias
+
+// To enable in-memory caching, then to register the caching service
+// in the application’s service container.
+builder.Services.AddMemoryCache();
+
+// Register the IDocumentTypeRepository with its implementation DocumentTypeRepository
 builder.Services.AddScoped<IDocumentTypeRepository, DocumentTypeRepository>();
+
 
 // Configurar CORS y Swagger utilizando los métodos de extensión
 builder.Services.ConfigureCors();
