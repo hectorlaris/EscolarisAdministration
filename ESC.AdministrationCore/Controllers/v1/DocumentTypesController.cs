@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using ESC.AdministrationCore.Infraestructure;
 using ESC.AdministrationCore.Entities.DbSet;
 using ESC.AdministrationCore.Application.DTOs;
+using ESC.AdministrationCore.Infraestructure.Repositories.Contracts;
 
 
 namespace ESC.AdministrationCore.Controllers.v1
@@ -16,50 +17,57 @@ namespace ESC.AdministrationCore.Controllers.v1
     public class DocumentTypesController : ControllerBase
     {
         private readonly AdministrationCoreDbContext _context;
+        private readonly IDocumentTypeRepository _service;
         private readonly IMapper _mapper;
 
         //inyección de dependencias 
-        public DocumentTypesController(AdministrationCoreDbContext Context, IMapper mapper )
+        public DocumentTypesController(AdministrationCoreDbContext Context, IDocumentTypeRepository Service, IMapper mapper )
         {
             _context = Context;
+            _service = Service;
             _mapper = mapper;
         }
 
         [HttpGet]
         public async Task<ActionResult<List<DocumentTypeDTO>>> Get()
         {
-            var documentTypes = await _context.DocumentTypes.ToListAsync();
 
+            //var documentTypes = await _context.DocumentTypes.ToListAsync();
+
+            //return _mapper.Map<List<DocumentTypeDTO>>(documentTypes);
+            
+            var documentTypes = await _service.GetAll();
             return _mapper.Map<List<DocumentTypeDTO>>(documentTypes);
         }
 
-        [HttpGet]
-        [Route("{code}")]
-        public async Task<ActionResult<DocumentTypeDTO>> GetDocumentTypeByCode(string code)
-        {
-            var documentType = await _context.DocumentTypes.FirstOrDefaultAsync(x => x.Code == code);
 
-            if (documentType == null)
-                return NotFound("Registro no encontrado.");
+        //[HttpGet]
+        //[Route("{code}")]
+        //public async Task<ActionResult<DocumentTypeDTO>> GetDocumentTypeByCode(string code)
+        //{
+        //    var documentType = await _context.DocumentTypes.FirstOrDefaultAsync(x => x.Code == code);
 
-            return _mapper.Map<DocumentTypeDTO>(documentType);
-        }
+        //    if (documentType == null)
+        //        return NotFound("Registro no encontrado.");
 
-        [HttpPost]
-        public async Task<ActionResult> Post([FromBody] DocumentTypeCreateDTO documentTypeCreateDTO)
-        {
-            var documentType = _mapper.Map<DocumentType>(documentTypeCreateDTO);
-            var existe = await _context.DocumentTypes.AnyAsync(x => x.Description == documentTypeCreateDTO.Description);
+        //    return _mapper.Map<DocumentTypeDTO>(documentType);
+        //}
 
-            if (existe)
-                return BadRequest($"Ya existe un tipo de documento con el nombre {documentTypeCreateDTO.Description}");
+        //[HttpPost]
+        //public async Task<ActionResult> Post([FromBody] DocumentTypeCreateDTO documentTypeCreateDTO)
+        //{
+        //    var documentType = _mapper.Map<DocumentType>(documentTypeCreateDTO);
+        //    var existe = await _context.DocumentTypes.AnyAsync(x => x.Description == documentTypeCreateDTO.Description);
 
-            _context.Add(documentType);
-            
-            await _context.SaveChangesAsync();
-            
-            return Ok();
-        }
+        //    if (existe)
+        //        return BadRequest($"Ya existe un tipo de documento con el nombre {documentTypeCreateDTO.Description}");
+
+        //    _context.Add(documentType);
+
+        //    await _context.SaveChangesAsync();
+
+        //    return Ok();
+        //}
 
     }
 }
