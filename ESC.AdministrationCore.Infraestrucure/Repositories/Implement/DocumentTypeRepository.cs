@@ -15,16 +15,19 @@ namespace ESC.AdministrationCore.Infraestructure.Repositories.Implement
 {
     public class DocumentTypeRepository : IDocumentTypeRepository
     {
+        // instancias almacenadas que no cambia de valor = readonly
         private readonly AdministrationCoreDbContext _context;
-        private readonly IMemoryCache _memoryCache;
+        private readonly IMemoryCache _cache;
         private readonly ILogger _logger;
         private readonly IMapper _mapper;
 
+
+        //constructor
         public DocumentTypeRepository(AdministrationCoreDbContext Context,
                                           IMemoryCache Cache, ILogger<DocumentType> Logger, IMapper Mapper)
         {
             _context = Context;
-            _memoryCache = Cache;
+            _cache = Cache;
             _logger = Logger;
             _mapper = Mapper;
         }
@@ -35,7 +38,7 @@ namespace ESC.AdministrationCore.Infraestructure.Repositories.Implement
 
             _logger.LogInformation("fetching data for key: {CacheKey} from cache.", cacheKey);
 
-            if (!_memoryCache.TryGetValue(cacheKey, out List<DocumentType>? documentTypes))
+            if (!_cache.TryGetValue(cacheKey, out List<DocumentType>? documentTypes))
             {
                 _logger.LogInformation("cache miss. fetching data for key: {CacheKey} from database.", cacheKey);
 
@@ -47,7 +50,7 @@ namespace ESC.AdministrationCore.Infraestructure.Repositories.Implement
                     .SetPriority(CacheItemPriority.NeverRemove)
                     .SetSize(2048);
                 _logger.LogInformation("setting data for key: {CacheKey} to cache.", cacheKey);
-                _memoryCache.Set(cacheKey, documentTypes, cacheOptions);
+                _cache.Set(cacheKey, documentTypes, cacheOptions);
             }
             else
             {
