@@ -27,15 +27,16 @@ builder.Services.AddDbContext<AdministrationCoreDbContext>(options =>
 });
 
 
-// To enable in-memory caching, then to register the caching service
-// in the application’s service container.
+// Register the caching service in the application’s service container To enable in-memory caching.
 builder.Services.AddMemoryCache();
+
+// Métodos de extensión para configrar servicios específicos de la app
 
 // Register the IDocumentTypeRepository with its implementation DocumentTypeRepository
 builder.Services.AddScoped<IDocumentTypeRepository, DocumentTypeRepository>();
 
-
-// Configurar CORS y Swagger utilizando los métodos de extensión
+// CORS Cross-Origin Resource Sharing permite que los recursos en un servidor web sean solicitados desde otro dominio distinto al propio dominio del servidor
+// Swagger utilizando los métodos de extensión
 builder.Services.ConfigureCors();
 builder.Services.ConfigureSwagger();
 
