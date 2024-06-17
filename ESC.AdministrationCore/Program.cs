@@ -7,6 +7,7 @@ using ESC.AdministrationCore.Extensions;
 using ESC.AdministrationCore.Application.Mapping;
 
 using Microsoft.Data.SqlClient;
+using Serilog;
 
 // Constructor de la aplicación web
 // para preparar y configurarla 
@@ -55,6 +56,18 @@ builder.Services.AddLogging(loggingBuilder =>
     loggingBuilder.AddConsole();
     loggingBuilder.AddDebug();
 });
+
+// Configuración de Serilog para  ver los mensajes de  _logger.LogInformation(...
+Log.Logger = new LoggerConfiguration()
+    .WriteTo.Console()
+    .WriteTo.File("logs/csi-esc-administration-core.txt", rollingInterval: RollingInterval.Day)
+    .CreateLogger();
+
+builder.Host.UseSerilog();
+
+// Configuración de servicios
+builder.Services.AddLogging();
+
 
 
 // Para construir y ejecutar la aplicación con las configuraciones definidas.
