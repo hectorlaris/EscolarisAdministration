@@ -7,16 +7,13 @@ using ESC.AdministrationCore.Infraestructure;
 using ESC.AdministrationCore.Entities.DbSet;
 using EESC.AdministrationCore.Application.DTOs;
 
-
 namespace ESC.AdministrationCore.Controllers.v1
 {
     [Route("administration/v1/citizens")]
     [ApiController]
 
-
     public class CitizensController : ControllerBase
     {
-
         private readonly AdministrationCoreDbContext _context;
         private readonly IMapper _mapper;
 
@@ -45,7 +42,6 @@ namespace ESC.AdministrationCore.Controllers.v1
 
             return (IActionResult)_mapper.Map<CitizenDTO>(citizen);
         }
-
 
         [HttpPost]
         public async Task<ActionResult> Post([FromBody] CitizenCreateDTO citizenCreateDTO)

@@ -3,7 +3,7 @@ using ESC.AdministrationCore.Application.DTOs;
 using ESC.AdministrationCore.Entities.DbSet;
 
 
-namespace ESC.AdministrationCore.Infraestructure.Repositories.Contracts
+namespace ESC.AdministrationCore.Application.Interfaces
 {
 	public interface IDocumentTypeRepository
 	{

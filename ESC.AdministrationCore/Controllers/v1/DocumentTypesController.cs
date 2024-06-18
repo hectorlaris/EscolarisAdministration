@@ -6,8 +6,7 @@ using System.Threading.Tasks;
 using ESC.AdministrationCore.Infraestructure;
 using ESC.AdministrationCore.Entities.DbSet;
 using ESC.AdministrationCore.Application.DTOs;
-using ESC.AdministrationCore.Infraestructure.Repositories.Contracts;
-
+using ESC.AdministrationCore.Application.Interfaces;
 
 namespace ESC.AdministrationCore.Controllers.v1
 {
@@ -39,7 +38,6 @@ namespace ESC.AdministrationCore.Controllers.v1
             var documentTypes = await _service.GetAll();
             return _mapper.Map<List<DocumentTypeDTO>>(documentTypes);
         }
-
 
         //[HttpGet]
         //[Route("{code}")]
