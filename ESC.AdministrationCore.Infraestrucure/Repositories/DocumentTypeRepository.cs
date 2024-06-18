@@ -8,10 +8,10 @@ using ESC.AdministrationCore.Application.DTOs;
 
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Logging;
-using ESC.AdministrationCore.Infraestructure.Repositories.Contracts;
+using ESC.AdministrationCore.Application.Interfaces;
 
 
-namespace ESC.AdministrationCore.Infraestructure.Repositories.Implement
+namespace ESC.AdministrationCore.Infraestructure.Repositories
 {
     public class DocumentTypeRepository : IDocumentTypeRepository
     {
@@ -20,7 +20,6 @@ namespace ESC.AdministrationCore.Infraestructure.Repositories.Implement
         private readonly IMemoryCache _cache;
         private readonly ILogger _logger;
         private readonly IMapper _mapper;
-
 
         //constructor
         public DocumentTypeRepository(AdministrationCoreDbContext Context,

@@ -1,13 +1,14 @@
 using Microsoft.EntityFrameworkCore;
 
 using ESC.AdministrationCore.Infraestructure;
-using ESC.AdministrationCore.Infraestructure.Repositories.Implement; // To use IPackageRepository.
-using ESC.AdministrationCore.Infraestructure.Repositories.Contracts; // To use IPackageRepository.
+using ESC.AdministrationCore.Infraestructure.Repositories; // To use IPackageRepository.
 using ESC.AdministrationCore.Extensions;
 using ESC.AdministrationCore.Application.Mapping;
 
 using Microsoft.Data.SqlClient;
 using Serilog;
+using ESC.AdministrationCore.Application.Interfaces;
+
 
 // Constructor de la aplicación web
 // para preparar y configurarla 
@@ -27,14 +28,14 @@ builder.Services.AddDbContext<AdministrationCoreDbContext>(options =>
 
 });
 
-
 // Register the caching service in the application’s service container To enable in-memory caching.
 builder.Services.AddMemoryCache();
 
 // Métodos de extensión para configrar servicios específicos de la app
-
 // Register the IDocumentTypeRepository with its implementation DocumentTypeRepository
-builder.Services.AddScoped<IDocumentTypeRepository, DocumentTypeRepository>();
+//builder.Services.AddScoped<IDocumentTypeRepository, DocumentTypeRepository>();
+builder.Services.RegisterServices();
+
 
 // CORS Cross-Origin Resource Sharing permite que los recursos en un servidor web sean solicitados desde otro dominio distinto al propio dominio del servidor
 // Swagger utilizando los métodos de extensión

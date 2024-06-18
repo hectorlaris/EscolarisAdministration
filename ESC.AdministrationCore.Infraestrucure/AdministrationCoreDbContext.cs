@@ -16,8 +16,8 @@ namespace ESC.AdministrationCore.Infraestructure
         public  DbSet<Citizen> Citizens { get; set; }
         public  DbSet<DocumentType> DocumentTypes { get; set; }
         public  DbSet<CitizenMaritalStatus> CitizenMaritalStatuses { get; set; }
-
         public DbSet<Country> Countries { get; set; }
+        public DbSet<User> Users { get; set; }
 
         #endregion
 
@@ -32,6 +32,10 @@ namespace ESC.AdministrationCore.Infraestructure
                 .Property(d => d.Id)
                 .HasDefaultValueSql("NEWSEQUENTIALID()");
 
+            //GUIDs secuenciales por razones de rendimiento
+            modelBuilder.Entity<User>()
+                .Property(d => d.Id)
+                .HasDefaultValueSql("NEWSEQUENTIALID()");
 
             modelBuilder.Entity<DocumentType>()
                 .Property(d => d.Id)
@@ -40,6 +44,9 @@ namespace ESC.AdministrationCore.Infraestructure
             // Otras configuraciones
             modelBuilder.Entity<DocumentType>()
                .HasIndex(m => m.Description);
+
+            modelBuilder.Entity<User>()
+                .HasIndex(m => m.Username);
 
             modelBuilder.Entity<DocumentType>()
                 .HasMany(m => m.Citizens)
