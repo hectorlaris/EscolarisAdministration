@@ -17,7 +17,7 @@ namespace ESC.AdministrationCore.Infraestructure
         public  DbSet<DocumentType> DocumentTypes { get; set; }
         public  DbSet<CitizenMaritalStatus> CitizenMaritalStatuses { get; set; }
         public DbSet<Country> Countries { get; set; }
-        public DbSet<User> Users { get; set; }
+        public DbSet<User> User { get; set; }
 
         #endregion
 

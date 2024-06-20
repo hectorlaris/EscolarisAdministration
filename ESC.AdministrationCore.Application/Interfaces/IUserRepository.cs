@@ -5,7 +5,9 @@ namespace ESC.AdministrationCore.Application.Interfaces
 {
     public interface IUserRepository
     {
-        Task<List<UserDTO>> GetAll();
+        //Task<List<UserDTO>> GetAll();
+
+        Task<List<User>> GetAll();
 
         Task<User> GetById(Guid id);
 
