@@ -20,6 +20,7 @@ namespace ESC.AdministrationCore.Helper
         {
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(appSettings.Secret);
+            // var key = Encoding.ASCII.GetBytes("8c8624e2-2afc-76a5-649e-9b9bf15cf6d3");
 
             var tokenDescriptor = new SecurityTokenDescriptor
             {

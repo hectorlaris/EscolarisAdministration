@@ -8,6 +8,7 @@ using ESC.AdministrationCore.Application.Mapping;
 using Microsoft.Data.SqlClient;
 using Serilog;
 using ESC.AdministrationCore.Application.Interfaces;
+using ESC.AdministrationCore.Helper;
 
 
 // Constructor de la aplicación web
@@ -35,6 +36,11 @@ builder.Services.AddMemoryCache();
 // Register the IDocumentTypeRepository with its implementation DocumentTypeRepository
 //builder.Services.AddScoped<IDocumentTypeRepository, DocumentTypeRepository>();
 builder.Services.RegisterServices();
+
+
+// configure strongly typed settings object  20240620
+builder.Services.Configure<AppSettings>(builder.Configuration.GetSection("AppSettings"));
+
 
 
 // CORS Cross-Origin Resource Sharing permite que los recursos en un servidor web sean solicitados desde otro dominio distinto al propio dominio del servidor
@@ -90,6 +96,9 @@ else
     app.UseHsts();
 }
 
+// custom jwt auth middleware
+app.UseMiddleware<JwtMiddleware>();
+
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
@@ -106,5 +115,7 @@ app.MapControllers();
 
 // Configurar health checks
 //app.MapHealthChecks("/health");
+
+
 
 app.Run();
