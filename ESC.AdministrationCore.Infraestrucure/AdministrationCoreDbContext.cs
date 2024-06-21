@@ -18,7 +18,7 @@ namespace ESC.AdministrationCore.Infraestructure
         public  DbSet<CitizenMaritalStatus> CitizenMaritalStatuses { get; set; }
         public DbSet<Country> Countries { get; set; }
         public DbSet<User> User { get; set; }
-
+        public DbSet<Product> Products { get; set; }
         #endregion
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -40,6 +40,8 @@ namespace ESC.AdministrationCore.Infraestructure
             modelBuilder.Entity<DocumentType>()
                 .Property(d => d.Id)
                 .HasDefaultValueSql("NEWSEQUENTIALID()");
+
+            modelBuilder.Entity<Product>().HasKey(p => p.Id);
 
             // Otras configuraciones
             modelBuilder.Entity<DocumentType>()

@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ESC.AdministrationCore.Infraestructure.Migrations
 {
     [DbContext(typeof(AdministrationCoreDbContext))]
-    [Migration("20240607213904_AddDefaultGuidForDocumentType")]
-    partial class AddDefaultGuidForDocumentType
+    [Migration("20240621001902_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -30,7 +30,8 @@ namespace ESC.AdministrationCore.Infraestructure.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("uniqueidentifier")
+                        .HasDefaultValueSql("NEWSEQUENTIALID()");
 
                     b.Property<string>("Address")
                         .HasColumnType("nvarchar(max)");
@@ -44,6 +45,7 @@ namespace ESC.AdministrationCore.Infraestructure.Migrations
                         .HasColumnType("nvarchar(12)");
 
                     b.Property<string>("Email")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("FirstName")
@@ -137,7 +139,8 @@ namespace ESC.AdministrationCore.Infraestructure.Migrations
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
 
                     b.Property<short?>("IdDocumentType")
                         .HasColumnType("smallint");
@@ -147,6 +150,61 @@ namespace ESC.AdministrationCore.Infraestructure.Migrations
                     b.HasIndex("Description");
 
                     b.ToTable("DocumentTypes", "dbo");
+                });
+
+            modelBuilder.Entity("ESC.AdministrationCore.Entities.DbSet.Product", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Products", "dbo");
+                });
+
+            modelBuilder.Entity("ESC.AdministrationCore.Entities.DbSet.User", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier")
+                        .HasDefaultValueSql("NEWSEQUENTIALID()");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Username")
+                        .IsRequired()
+                        .HasMaxLength(12)
+                        .HasColumnType("nvarchar(12)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Username");
+
+                    b.ToTable("User", "dbo");
                 });
 
             modelBuilder.Entity("ESC.AdministrationCore.Entities.DbSet.Citizen", b =>

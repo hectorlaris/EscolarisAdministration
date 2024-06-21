@@ -1,7 +1,5 @@
 ﻿using AutoMapper;
-using EESC.AdministrationCore.Application.DTOs;
 using ESC.AdministrationCore.Application.DTOs;
-using ESC.AdministrationCore.Entities;
 using ESC.AdministrationCore.Entities.DbSet; //Domain.Entities;
 
 namespace ESC.AdministrationCore.Application.Mapping
@@ -20,6 +18,12 @@ namespace ESC.AdministrationCore.Application.Mapping
             CreateMap<UserDTO, User>();
             CreateMap<User, UserDTO>();
 
+            CreateMap<ProductDTO, Product>();
+            CreateMap<Product, ProductDTO>();   
+            
+            CreateMap<ProductCreationDto, Product>();
+            CreateMap<Product, ProductCreationDto>();
+            
         }
     }
 }

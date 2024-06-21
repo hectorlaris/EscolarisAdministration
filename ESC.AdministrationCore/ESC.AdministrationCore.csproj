@@ -20,6 +20,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="9.0.0-preview.5.24306.11" />
     <PackageReference Include="Microsoft.IdentityModel.JsonWebTokens" Version="7.6.0" />
     <PackageReference Include="Microsoft.IdentityModel.Protocols" Version="7.6.0" />
     <PackageReference Include="Serilog.AspNetCore" Version="8.0.2-dev-00338" />

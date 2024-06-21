@@ -46,9 +46,9 @@ namespace ESC.AdministrationCore.Infraestructure.Migrations
                 schema: "dbo",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false, defaultValueSql: "NEWSEQUENTIALID()"),
                     Code = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
                     IdDocumentType = table.Column<short>(type: "smallint", nullable: true)
                 },
                 constraints: table =>
@@ -57,11 +57,42 @@ namespace ESC.AdministrationCore.Infraestructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Citizens",
+                name: "Products",
                 schema: "dbo",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Products", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "User",
+                schema: "dbo",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false, defaultValueSql: "NEWSEQUENTIALID()"),
+                    FirstName = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    LastName = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    Username = table.Column<string>(type: "nvarchar(12)", maxLength: 12, nullable: false),
+                    Password = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_User", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Citizens",
+                schema: "dbo",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false, defaultValueSql: "NEWSEQUENTIALID()"),
                     DocumentNumber = table.Column<string>(type: "nvarchar(12)", maxLength: 12, nullable: false),
                     MyDocumentType = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     FirstName = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
@@ -70,7 +101,7 @@ namespace ESC.AdministrationCore.Infraestructure.Migrations
                     IdDocumentType = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     Address = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Telephone = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     IdMaritalStatus = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     DateOfBirth = table.Column<DateTime>(type: "datetime2", nullable: true),
                     Profession = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -111,6 +142,12 @@ namespace ESC.AdministrationCore.Infraestructure.Migrations
                 schema: "dbo",
                 table: "DocumentTypes",
                 column: "Description");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_User_Username",
+                schema: "dbo",
+                table: "User",
+                column: "Username");
         }
 
         /// <inheritdoc />
@@ -126,6 +163,14 @@ namespace ESC.AdministrationCore.Infraestructure.Migrations
 
             migrationBuilder.DropTable(
                 name: "Countries",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "Products",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "User",
                 schema: "dbo");
 
             migrationBuilder.DropTable(

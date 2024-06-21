@@ -22,6 +22,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="9.0.0-preview.5.24306.11" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="9.0.0-preview.4.24266.19" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="9.0.0-preview.5.24306.7" />
     <PackageReference Include="System.Data.SqlClient" Version="4.8.6" />

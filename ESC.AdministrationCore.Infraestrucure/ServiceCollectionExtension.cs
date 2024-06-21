@@ -25,6 +25,9 @@ namespace ESC.AdministrationCore.Infraestructure
             // acceder a la misma instancia del repositorio para garantizar consistencia en las
             // operaciones de base de datos.
             services.AddScoped<IDocumentTypeRepository, DocumentTypeRepository>();
+            services.AddScoped<IProductRepository, ProductRepository>();
+
+
         }
     }
 }
