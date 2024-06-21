@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Runtime.Serialization;
 using Microsoft.EntityFrameworkCore;
 
-namespace EESC.AdministrationCore.Application.DTOs
+namespace ESC.AdministrationCore.Application.DTOs
 {
 
     public class CitizenDTO

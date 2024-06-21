@@ -9,7 +9,6 @@ namespace ESC.AdministrationCore.Helper
     {
         public void OnAuthorization(AuthorizationFilterContext context)
         {
-            //var user = context.HttpContext.Items["User"] as User;
             var user = (User)context.HttpContext.Items["User"];
 
             if (user == null)

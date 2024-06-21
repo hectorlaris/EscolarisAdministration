@@ -1,13 +1,10 @@
 using Microsoft.EntityFrameworkCore;
-
-using ESC.AdministrationCore.Infraestructure;
-using ESC.AdministrationCore.Infraestructure.Repositories; // To use IPackageRepository.
-using ESC.AdministrationCore.Extensions;
-using ESC.AdministrationCore.Application.Mapping;
-
 using Microsoft.Data.SqlClient;
 using Serilog;
-using ESC.AdministrationCore.Application.Interfaces;
+
+using ESC.AdministrationCore.Application.Mapping;
+using ESC.AdministrationCore.Infraestructure;
+using ESC.AdministrationCore.Extensions;
 using ESC.AdministrationCore.Helper;
 
 
@@ -37,11 +34,8 @@ builder.Services.AddMemoryCache();
 //builder.Services.AddScoped<IDocumentTypeRepository, DocumentTypeRepository>();
 builder.Services.RegisterServices();
 
-
 // configure strongly typed settings object  20240620
 builder.Services.Configure<AppSettings>(builder.Configuration.GetSection("AppSettings"));
-
-
 
 // CORS Cross-Origin Resource Sharing permite que los recursos en un servidor web sean solicitados desde otro dominio distinto al propio dominio del servidor
 // Swagger utilizando los métodos de extensión
@@ -75,6 +69,16 @@ builder.Host.UseSerilog();
 // Configuración de servicios
 builder.Services.AddLogging();
 
+//sets the Redis server’s connection string to “localhost”, indicating that the Redis server is running on the local machine.
+builder.Services.AddStackExchangeRedisCache(options =>
+{
+    options.Configuration = "localhost";
+    options.ConfigurationOptions = new StackExchange.Redis.ConfigurationOptions()
+    {
+        AbortOnConnectFail = true,
+        EndPoints = { options.Configuration }
+    };
+});
 
 
 // Para construir y ejecutar la aplicación con las configuraciones definidas.
@@ -115,7 +119,5 @@ app.MapControllers();
 
 // Configurar health checks
 //app.MapHealthChecks("/health");
-
-
 
 app.Run();

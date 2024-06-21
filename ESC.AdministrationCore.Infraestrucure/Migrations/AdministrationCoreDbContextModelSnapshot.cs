@@ -149,6 +149,28 @@ namespace ESC.AdministrationCore.Infraestructure.Migrations
                     b.ToTable("DocumentTypes", "dbo");
                 });
 
+            modelBuilder.Entity("ESC.AdministrationCore.Entities.DbSet.Product", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Products", "dbo");
+                });
+
             modelBuilder.Entity("ESC.AdministrationCore.Entities.DbSet.User", b =>
                 {
                     b.Property<Guid>("Id")
@@ -179,7 +201,7 @@ namespace ESC.AdministrationCore.Infraestructure.Migrations
 
                     b.HasIndex("Username");
 
-                    b.ToTable("Users", "dbo");
+                    b.ToTable("User", "dbo");
                 });
 
             modelBuilder.Entity("ESC.AdministrationCore.Entities.DbSet.Citizen", b =>
