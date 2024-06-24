@@ -44,11 +44,10 @@ namespace ESC.AdministrationCore.Controllers.v1
 
             var productDto = new ProductDTO
             {
-                Id = product.Id,
-                Name = product.Name,
-                Description = product.Description,
-                Price = product.Price
-    
+                ProductId = product.ProductId,
+                ProductName = product.ProductName,
+                ProductDescription = product.ProductDescription,
+                UnitPrice = (decimal)product.UnitPrice
             };
 
             return Ok(productDto);

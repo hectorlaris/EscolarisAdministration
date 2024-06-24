@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
 using System.Xml.Serialization; // To use [XmlIgnore].
 
-namespace Northwind.EntityModels;
+namespace ESC.AdministrationCore.Entities.DbSet;
 
 [Index("City", Name = "City")]
 [Index("CompanyName", Name = "CompanyName")]
