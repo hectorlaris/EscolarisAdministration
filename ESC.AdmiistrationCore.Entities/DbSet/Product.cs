@@ -10,9 +10,7 @@ public class Product
     [StringLength(40)]
     public string ProductName { get; set; } = default!;
     public string ProductDescription { get; set; } = default!;
-
     public int? SupplierId { get; set; }
-
     public int? CategoryId { get; set; }
 
     [StringLength(20)]
@@ -44,11 +42,12 @@ public class Product
     // Parameterless constructor for EF Core
     private Product() { }
 
-    public Product(string name, string description, decimal price)
+    public Product(string name, string description, int supplierId, decimal price )
     {
         ProductId = Guid.NewGuid();
         ProductName = name;
         ProductDescription = description;
+        SupplierId = supplierId;
         UnitPrice = price;
     }
 }

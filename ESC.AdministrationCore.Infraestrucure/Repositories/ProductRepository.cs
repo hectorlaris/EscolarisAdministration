@@ -29,9 +29,11 @@ namespace ESC.AdministrationCore.Infraestructure.Repositories
 
         public async Task Add(ProductCreationDto request)
         {
-            var product = new Entities.DbSet.Product(request.ProductName, request.ProductDescription, request.UnitPrice);
+            var product = new Entities.DbSet.Product(request.ProductName, request.ProductDescription, request.supplierId, request.UnitPrice);
+
             await _context.Products.AddAsync(product);
             await _context.SaveChangesAsync();
+            
             // invalidate cache for products, as new product is added
             var cacheKey = "products";
             _logger.LogInformation("invalidating cache for key: {CacheKey} from cache.", cacheKey);
