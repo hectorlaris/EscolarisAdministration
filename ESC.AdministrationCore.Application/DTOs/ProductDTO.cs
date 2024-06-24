@@ -2,10 +2,11 @@
 {
     public class ProductDTO
     {
-        public Guid Id { get; set; }
-        public string Name { get; set; } = default!;
-        public string Description { get; set; } = default!;
-        public decimal Price { get; set; }
+        public Guid ProductId { get; set; }
+        public string ProductName { get; set; } = default!;
+        public string ProductDescription { get; set; } = default!;
+        public decimal UnitPrice { get; set; }
+
     }
 }
 

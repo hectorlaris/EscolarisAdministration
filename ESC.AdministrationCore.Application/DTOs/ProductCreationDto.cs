@@ -1,9 +1,11 @@
-﻿namespace ESC.AdministrationCore.Application.DTOs;
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace ESC.AdministrationCore.Application.DTOs;
 
 public class ProductCreationDto
 {
-    public string Name { get; set; } = default!;
-    public string Description { get; set; } = default!;
-    public decimal Price { get; set; }
+    public string ProductName { get; set; } = default!;
+    public string ProductDescription { get; set; } = default!;
+    public decimal UnitPrice { get; set; }
 
 }
